@@ -10,8 +10,14 @@ def add_student():
 	STUDENTS.append(student)
 
 def print_student(student):
+	max_len_fiels = max(len(field) for field in student_fields)
 	for field in student:
-		print(field, '\t', student[field])
+		#while True:
+		#	if len(field) < max_len_fiels:
+		#		field += ' '
+		#	else:
+		#		break
+		print(field.replace('_', ' ').capitalize(), student[field].capitalize())
 
 def load_students():
 	for test_student in TEST_STUDENTS:
