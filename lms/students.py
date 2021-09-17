@@ -1,3 +1,7 @@
+
+import json
+import csv
+
 student_fields = ['first_name', 'last_name', 'gender', 'age', 'email', 'address']
 
 STUDENTS = []
@@ -14,6 +18,29 @@ def add_student():
 				student['age'] = input('Enter age as number\t')
 	STUDENTS.append(student)
 
+def load_students():
+	for test_student in TEST_STUDENTS:
+		student = dict(zip(student_fields, test_student))
+		STUDENTS.append(student)
+
+def dump_studens():
+    with open('data/student_data.json', 'w') as file:
+        json.dump(STUDENTS, file)
+
+def dump_csv():
+    with open('data/student_data.csv', 'w') as file:
+        writer = csv.DictWriter(file, fieldnames=student_fields)
+        writer.writeheader()
+        for student in STUDENTS:
+            writer.writerow(student)
+
+def load_csv(file_path='data/student_data.csv'):
+    pass
+
+def load_from_json(file_path='data/student_data.json'):
+    with open(file_path, 'r') as read_file:
+        STUDENTS.extend(json.load(read_file))
+
 def print_student(student):
 	max_len_fiels = max(len(field) for field in student_fields)
 	for field in student:
@@ -28,17 +55,12 @@ def print_student(student):
 		
 		#print("{: > max_len_fiels}, {: > max_len_fiels}".format(field, student[field]))
 
-def load_students():
-	for test_student in TEST_STUDENTS:
-		student = dict(zip(student_fields, test_student))
-		STUDENTS.append(student)
-
-def print_strudents_list():
+def print_students_list():
     for student in STUDENTS:
-    	print_student(student)
     	print('')
     	print('*************************')
     	print('')
+    	print_student(student)
 
 def calculator_avg_age():
 	try:
@@ -52,21 +74,39 @@ def calculator_avg_age():
 	except Exception as e:
 		print(str(e))
 
+ACTIONS ={
+	'add': add_student,
+	'load': load_students,
+	'print': print_students_list,
+	'age': calculator_avg_age,
+	'dump': dump_studens,
+    'dump_csv': dump_csv,
+    'load_json': load_from_json,
+    'load_csv': load_csv
+}
 
-while True:
-	action = input('Your action:')
-	if action == 'add':
-		add_student()
-	elif action == 'load':
-		load_students()
-	elif action == 'print':
-		for student in STUDENTS:
-			print_student(student)
-	elif action == 'age':
-		calculator_avg_age()
-	elif action == 'all_student':
-		print_strudents_list()
-	else:
-		break
+if __name__ == '__main__':
+	while True:
+		action = input('Your action:')
+		if action in ACTIONS:
+			ACTIONS.get(action)()
+		else:
+			break
+
+#while True:
+#	action = input('Your action:')
+#	if action == 'add':
+#		add_student()
+#	elif action == 'load':
+#		load_students()
+#	elif action == 'print':
+#		for student in STUDENTS:
+#			print_student(student)
+#	elif action == 'age':
+#		calculator_avg_age()
+#	elif action == 'all_student':
+#		print_strudents_list()
+#	else:
+#		break
 
 

@@ -1,0 +1,31 @@
+EXAM = []
+
+QUESTION = {
+    "question": "What is Python?",
+    "answers": ["Programming language", "Snake", "I don't know"],
+    "correct_answer": "1"
+}
+
+QUESTION = {
+    "question": "Which function outputs anything to the console?",
+    "answers": ["print()", "out();", "write()"],
+    "correct_answer": "1"
+}
+
+QUESTION = {
+    "question": "Which library is responsible for the time?",
+    "answers": ["localtime", "clock", "time"],
+    "correct_answer": "3"
+}
+
+QUESTION = {
+    "question": "What function receives data from the user?",
+    "answers": ["read()", "get()", "input()"],
+    "correct_answer": "3"
+}
+
+QUESTION = {
+    "question": "Where is the variable created correctly?",
+    "answers": ["$num = 2", "int num = 2", "num = float(2)"],
+    "correct_answer": "3"
+}
