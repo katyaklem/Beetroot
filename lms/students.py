@@ -4,6 +4,7 @@ import csv
 
 student_fields = ['first_name', 'last_name', 'gender', 'age', 'email', 'address']
 
+EXAM=[]
 STUDENTS = []
 TEST_STUDENTS = [['Marry', 'Pop', 'F', '32', 'marry@pop', 'Od'],['Garry', 'Bob', 'M', '22', 'garry@bob', 'Bi']]
 
@@ -35,7 +36,8 @@ def dump_csv():
             writer.writerow(student)
 
 def load_csv(file_path='data/student_data.csv'):
-    pass
+    with open(file_path, 'r') as read_file:
+        STUDENTS.extend(csv.load(read_file))
 
 def load_from_json(file_path='data/student_data.json'):
     with open(file_path, 'r') as read_file:
@@ -74,6 +76,12 @@ def calculator_avg_age():
 	except Exception as e:
 		print(str(e))
 
+def firs_exam(file_exam = 'data/exam.json'):
+	with open(file_exam, 'r') as read_file:
+		EXAM.extend(json.load(read_file))
+	print(EXAM)
+
+
 ACTIONS ={
 	'add': add_student,
 	'load': load_students,
@@ -82,7 +90,8 @@ ACTIONS ={
 	'dump': dump_studens,
     'dump_csv': dump_csv,
     'load_json': load_from_json,
-    'load_csv': load_csv
+    'load_csv': load_csv,
+    'exam': firs_exam,
 }
 
 if __name__ == '__main__':
