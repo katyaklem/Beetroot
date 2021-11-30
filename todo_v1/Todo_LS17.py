@@ -106,6 +106,8 @@ class Dashboard:
 			if selected_priority == task.priority:
 				print(task)
 			#придумать как сказать, что таких задач нет
+
+
 	'''
 	def search_by_title(self):
 		search_title = input('Task name for search:    ')
